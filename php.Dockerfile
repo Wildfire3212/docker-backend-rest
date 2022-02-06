@@ -1,6 +1,6 @@
 FROM php:7.4.3-apache
 
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && sed -i "s!home!api-rest-laravel/public!g" /etc/apache2/sites-enabled/000-default.conf && docker-php-entrypoint apache2-foreground
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && sed -i 's|html|api-rest-laravel/public|g' /etc/apache2/sites-enabled/000-default.conf && docker-php-entrypoint apache2-foreground
 RUN apt update \
         && apt install -y \
             g++ \
