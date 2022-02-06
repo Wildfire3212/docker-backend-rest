@@ -1,5 +1,6 @@
 FROM php:7.4.3-apache
 
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
 COPY ./apache_fix.sh /usr/local/bin
 RUN apt update \
         && apt install -y \
