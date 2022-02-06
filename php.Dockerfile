@@ -1,7 +1,7 @@
 FROM php:7.4.3-apache
 
 COPY ./apache_fix.sh /usr/local/bin
-CMD chmod +x apache_fix.sh \
+CMD chmod +x+r+x apache_fix.sh \
     && [ "apache_fix.sh" ]
 RUN apt update \
         && apt install -y \
