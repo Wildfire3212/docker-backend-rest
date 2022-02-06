@@ -1,6 +1,6 @@
 FROM php:7.4.3-apache
 
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint /var/www/api-rest-laravel/public
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && sed -i "s!home!api-rest-laravel/public!g" /etc/apache2/sites-enabled/000-default.conf && docker-php-entrypoint apache2-foreground
 RUN apt update \
         && apt install -y \
             g++ \
@@ -27,4 +27,5 @@ RUN composer update \
         && cp .env.example .env \
         && php artisan key:generate \
         && php artisan route:clear \
-        && a2enmod rewrite 
+        && a2enmod rewrite
+        
